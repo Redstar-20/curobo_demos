@@ -35,3 +35,9 @@ Reference
   sphere-fitting methods on robot link meshes.
 - ``reference/robot_pose_calibration.py``: Interactive ICP / SDF pose-estimation
   demo in Viser.
+- ``reference/dual_arm_bin_picking.py``: Two KUKA LBR iisy arms without grippers
+  (or two Franka arms) move a random pile of plates between bins, each at its own
+  pace, without colliding with each other (Viser).
+- ``reference/multi_robot_welding.py``: Six KUKA KR10 robots with welding torches weld a
+  car body along Cartesian seams (constant travel speed, fixed torch angles); interlocks
+  on the robots' swept space keep them apart (Viser).

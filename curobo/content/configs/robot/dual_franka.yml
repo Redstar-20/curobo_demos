@@ -1,0 +1,504 @@
+## SPDX-FileCopyrightText: Copyright (c) 2026 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+## SPDX-License-Identifier: Apache-2.0
+##
+## Two Franka Panda arms facing each other, modeled as one 14-DoF robot.
+## Derived from franka.yml: every link/joint name is prefixed with left_ or right_.
+## Because both arms share one kinematic tree, robot self-collision checking also
+## keeps the two arms from colliding with each other.
+robot_cfg:
+  kinematics:
+    format_version: 2.0
+    urdf_path: robot/franka_description/dual_franka_panda.urdf
+    asset_root_path: robot/franka_description
+    base_link: base_link
+    tool_frames:
+    - left_panda_hand
+    - right_panda_hand
+    grasp_contact_link_names:
+    - left_panda_hand
+    - left_panda_leftfinger
+    - left_panda_rightfinger
+    - left_attached_object
+    - right_panda_hand
+    - right_panda_leftfinger
+    - right_panda_rightfinger
+    - right_attached_object
+    collision_link_names:
+    - left_panda_link0
+    - left_panda_link1
+    - left_panda_link2
+    - left_panda_link3
+    - left_panda_link4
+    - left_panda_link5
+    - left_panda_link6
+    - left_panda_link7
+    - left_panda_hand
+    - left_panda_leftfinger
+    - left_panda_rightfinger
+    - left_attached_object
+    - right_panda_link0
+    - right_panda_link1
+    - right_panda_link2
+    - right_panda_link3
+    - right_panda_link4
+    - right_panda_link5
+    - right_panda_link6
+    - right_panda_link7
+    - right_panda_hand
+    - right_panda_leftfinger
+    - right_panda_rightfinger
+    - right_attached_object
+    collision_sphere_buffer: 0.0
+    extra_collision_spheres:
+      left_attached_object: 4
+      right_attached_object: 4
+    extra_links:
+      left_attached_object:
+        fixed_transform: [0, 0, 0, 1, 0, 0, 0]
+        joint_name: left_attach_joint
+        joint_type: FIXED
+        link_name: left_attached_object
+        parent_link_name: left_panda_hand
+      right_attached_object:
+        fixed_transform: [0, 0, 0, 1, 0, 0, 0]
+        joint_name: right_attach_joint
+        joint_type: FIXED
+        link_name: right_attached_object
+        parent_link_name: right_panda_hand
+    mesh_link_names:
+    - left_panda_link0
+    - left_panda_link1
+    - left_panda_link2
+    - left_panda_link3
+    - left_panda_link4
+    - left_panda_link5
+    - left_panda_link6
+    - left_panda_link7
+    - left_panda_hand
+    - left_panda_leftfinger
+    - left_panda_rightfinger
+    - right_panda_link0
+    - right_panda_link1
+    - right_panda_link2
+    - right_panda_link3
+    - right_panda_link4
+    - right_panda_link5
+    - right_panda_link6
+    - right_panda_link7
+    - right_panda_hand
+    - right_panda_leftfinger
+    - right_panda_rightfinger
+    lock_joints:
+      left_panda_finger_joint1: 0.04
+      left_panda_finger_joint2: 0.04
+      right_panda_finger_joint1: 0.04
+      right_panda_finger_joint2: 0.04
+    self_collision_buffer:
+      left_attached_object: 0.01
+      left_panda_hand: 0.02
+      left_panda_leftfinger: 0.01
+      left_panda_link0: 0.1
+      left_panda_link1: 0.05
+      left_panda_link2: 0.01
+      left_panda_link3: 0.01
+      left_panda_link4: 0.01
+      left_panda_link5: 0.01
+      left_panda_link6: 0.01
+      left_panda_link7: 0.01
+      left_panda_rightfinger: 0.01
+      right_attached_object: 0.01
+      right_panda_hand: 0.02
+      right_panda_leftfinger: 0.01
+      right_panda_link0: 0.1
+      right_panda_link1: 0.05
+      right_panda_link2: 0.01
+      right_panda_link3: 0.01
+      right_panda_link4: 0.01
+      right_panda_link5: 0.01
+      right_panda_link6: 0.01
+      right_panda_link7: 0.01
+      right_panda_rightfinger: 0.01
+    self_collision_ignore:
+      left_panda_hand:
+      - left_panda_leftfinger
+      - left_panda_rightfinger
+      - left_attached_object
+      left_panda_leftfinger:
+      - left_panda_rightfinger
+      - left_attached_object
+      left_panda_link0:
+      - left_panda_link1
+      - left_panda_link2
+      left_panda_link1:
+      - left_panda_link2
+      - left_panda_link3
+      - left_panda_link4
+      left_panda_link2:
+      - left_panda_link3
+      - left_panda_link4
+      left_panda_link3:
+      - left_panda_link4
+      - left_panda_link6
+      left_panda_link4:
+      - left_panda_link5
+      - left_panda_link6
+      - left_panda_link7
+      - left_panda_link8
+      left_panda_link5:
+      - left_panda_link6
+      - left_panda_link7
+      - left_panda_hand
+      - left_panda_leftfinger
+      - left_panda_rightfinger
+      left_panda_link6:
+      - left_panda_link7
+      - left_panda_hand
+      - left_attached_object
+      - left_panda_leftfinger
+      - left_panda_rightfinger
+      left_panda_link7:
+      - left_panda_hand
+      - left_attached_object
+      - left_panda_leftfinger
+      - left_panda_rightfinger
+      left_panda_rightfinger:
+      - left_attached_object
+      right_panda_hand:
+      - right_panda_leftfinger
+      - right_panda_rightfinger
+      - right_attached_object
+      right_panda_leftfinger:
+      - right_panda_rightfinger
+      - right_attached_object
+      right_panda_link0:
+      - right_panda_link1
+      - right_panda_link2
+      right_panda_link1:
+      - right_panda_link2
+      - right_panda_link3
+      - right_panda_link4
+      right_panda_link2:
+      - right_panda_link3
+      - right_panda_link4
+      right_panda_link3:
+      - right_panda_link4
+      - right_panda_link6
+      right_panda_link4:
+      - right_panda_link5
+      - right_panda_link6
+      - right_panda_link7
+      - right_panda_link8
+      right_panda_link5:
+      - right_panda_link6
+      - right_panda_link7
+      - right_panda_hand
+      - right_panda_leftfinger
+      - right_panda_rightfinger
+      right_panda_link6:
+      - right_panda_link7
+      - right_panda_hand
+      - right_attached_object
+      - right_panda_leftfinger
+      - right_panda_rightfinger
+      right_panda_link7:
+      - right_panda_hand
+      - right_attached_object
+      - right_panda_leftfinger
+      - right_panda_rightfinger
+      right_panda_rightfinger:
+      - right_attached_object
+    cspace:
+      joint_names:
+      - left_panda_joint1
+      - left_panda_joint2
+      - left_panda_joint3
+      - left_panda_joint4
+      - left_panda_joint5
+      - left_panda_joint6
+      - left_panda_joint7
+      - left_panda_finger_joint1
+      - left_panda_finger_joint2
+      - right_panda_joint1
+      - right_panda_joint2
+      - right_panda_joint3
+      - right_panda_joint4
+      - right_panda_joint5
+      - right_panda_joint6
+      - right_panda_joint7
+      - right_panda_finger_joint1
+      - right_panda_finger_joint2
+      default_joint_position: [0.0, -1.3, 0.0, -2.5, 0.0, 1.5, 0.8, 0.04, 0.04, 0.0, -1.3, 0.0, -2.5,
+        0.0, 1.5, 0.8, 0.04, 0.04]
+      null_space_weight: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+      cspace_distance_weight: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+      max_acceleration: 15.0
+      max_jerk: 500.0
+    use_global_cumul: true
+    collision_spheres:
+      left_panda_link0:
+      - center: [0.0, 0.0, 0.085]
+        radius: 0.03
+      - center: [-0.1, -0.0, 0.085]
+        radius: 0.03
+      left_panda_link1:
+      - center: [0.0, -0.08, 0.0]
+        radius: 0.055
+      - center: [0.0, -0.03, 0.0]
+        radius: 0.06
+      - center: [0.0, 0.0, -0.12]
+        radius: 0.06
+      - center: [0.0, 0.0, -0.17]
+        radius: 0.06
+      left_panda_link2:
+      - center: [0.0, 0.0, 0.03]
+        radius: 0.055
+      - center: [0.0, 0.0, 0.08]
+        radius: 0.055
+      - center: [0.0, -0.12, 0.0]
+        radius: 0.055
+      - center: [0.0, -0.17, 0.0]
+        radius: 0.055
+      left_panda_link3:
+      - center: [0.0, 0.0, -0.06]
+        radius: 0.05
+      - center: [0.0, 0.0, -0.1]
+        radius: 0.06
+      - center: [0.08, 0.06, 0.0]
+        radius: 0.052
+      - center: [0.08, 0.02, 0.0]
+        radius: 0.052
+      left_panda_link4:
+      - center: [0.0, 0.0, 0.02]
+        radius: 0.052
+      - center: [0.0, 0.0, 0.06]
+        radius: 0.052
+      - center: [-0.08, 0.095, 0.0]
+        radius: 0.055
+      - center: [-0.08, 0.06, 0.0]
+        radius: 0.052
+      left_panda_link5:
+      - center: [0.0, 0.03, 0.0]
+        radius: 0.05
+      - center: [0.0, 0.082, 0.0]
+        radius: 0.05
+      - center: [0.0, 0.0, -0.22]
+        radius: 0.05
+      - center: [0.0, 0.052, -0.18]
+        radius: 0.04
+      - center: [0.01, 0.08, -0.14]
+        radius: 0.022
+      - center: [0.01, 0.085, -0.11]
+        radius: 0.022
+      - center: [0.01, 0.09, -0.08]
+        radius: 0.022
+      - center: [0.01, 0.095, -0.05]
+        radius: 0.022
+      - center: [-0.01, 0.08, -0.14]
+        radius: 0.022
+      - center: [-0.01, 0.085, -0.11]
+        radius: 0.022
+      - center: [-0.01, 0.09, -0.08]
+        radius: 0.022
+      - center: [-0.01, 0.095, -0.05]
+        radius: 0.022
+      - center: [0.0, -0.009, 0.0]
+        radius: 0.05
+      left_panda_link6:
+      - center: [0.085, 0.035, 0.0]
+        radius: 0.045
+      - center: [0.085, 0.0, 0.0]
+        radius: 0.045
+      - center: [0.085, -0.015, 0.0]
+        radius: 0.045
+      left_panda_link7:
+      - center: [0.0, 0.0, 0.07]
+        radius: 0.045
+      - center: [0.02, 0.04, 0.08]
+        radius: 0.024
+      - center: [0.04, 0.02, 0.08]
+        radius: 0.024
+      - center: [0.04, 0.06, 0.085]
+        radius: 0.02
+      - center: [0.06, 0.04, 0.085]
+        radius: 0.02
+      left_panda_hand:
+      - center: [0.0, -0.075, 0.01]
+        radius: 0.023
+      - center: [0.0, -0.045, 0.01]
+        radius: 0.023
+      - center: [0.0, -0.015, 0.01]
+        radius: 0.023
+      - center: [0.0, 0.015, 0.01]
+        radius: 0.023
+      - center: [0.0, 0.045, 0.01]
+        radius: 0.023
+      - center: [0.0, 0.075, 0.01]
+        radius: 0.023
+      - center: [0.0, -0.08, 0.03]
+        radius: 0.022
+      - center: [0.0, -0.045, 0.03]
+        radius: 0.022
+      - center: [0.0, -0.015, 0.03]
+        radius: 0.022
+      - center: [0.0, 0.015, 0.03]
+        radius: 0.022
+      - center: [0.0, 0.045, 0.03]
+        radius: 0.022
+      - center: [0.0, 0.08, 0.03]
+        radius: 0.022
+      - center: [0.0, -0.08, 0.045]
+        radius: 0.022
+      - center: [0.0, -0.045, 0.045]
+        radius: 0.022
+      - center: [0.0, -0.015, 0.045]
+        radius: 0.022
+      - center: [0.0, 0.015, 0.045]
+        radius: 0.022
+      - center: [0.0, 0.045, 0.045]
+        radius: 0.022
+      - center: [0.0, 0.08, 0.045]
+        radius: 0.022
+      left_panda_leftfinger:
+      - center: [0.0, 0.01, 0.043]
+        radius: 0.011
+      - center: [0.0, 0.02, 0.015]
+        radius: 0.011
+      left_panda_rightfinger:
+      - center: [0.0, -0.01, 0.043]
+        radius: 0.011
+      - center: [0.0, -0.02, 0.015]
+        radius: 0.011
+      right_panda_link0:
+      - center: [0.0, 0.0, 0.085]
+        radius: 0.03
+      - center: [-0.1, -0.0, 0.085]
+        radius: 0.03
+      right_panda_link1:
+      - center: [0.0, -0.08, 0.0]
+        radius: 0.055
+      - center: [0.0, -0.03, 0.0]
+        radius: 0.06
+      - center: [0.0, 0.0, -0.12]
+        radius: 0.06
+      - center: [0.0, 0.0, -0.17]
+        radius: 0.06
+      right_panda_link2:
+      - center: [0.0, 0.0, 0.03]
+        radius: 0.055
+      - center: [0.0, 0.0, 0.08]
+        radius: 0.055
+      - center: [0.0, -0.12, 0.0]
+        radius: 0.055
+      - center: [0.0, -0.17, 0.0]
+        radius: 0.055
+      right_panda_link3:
+      - center: [0.0, 0.0, -0.06]
+        radius: 0.05
+      - center: [0.0, 0.0, -0.1]
+        radius: 0.06
+      - center: [0.08, 0.06, 0.0]
+        radius: 0.052
+      - center: [0.08, 0.02, 0.0]
+        radius: 0.052
+      right_panda_link4:
+      - center: [0.0, 0.0, 0.02]
+        radius: 0.052
+      - center: [0.0, 0.0, 0.06]
+        radius: 0.052
+      - center: [-0.08, 0.095, 0.0]
+        radius: 0.055
+      - center: [-0.08, 0.06, 0.0]
+        radius: 0.052
+      right_panda_link5:
+      - center: [0.0, 0.03, 0.0]
+        radius: 0.05
+      - center: [0.0, 0.082, 0.0]
+        radius: 0.05
+      - center: [0.0, 0.0, -0.22]
+        radius: 0.05
+      - center: [0.0, 0.052, -0.18]
+        radius: 0.04
+      - center: [0.01, 0.08, -0.14]
+        radius: 0.022
+      - center: [0.01, 0.085, -0.11]
+        radius: 0.022
+      - center: [0.01, 0.09, -0.08]
+        radius: 0.022
+      - center: [0.01, 0.095, -0.05]
+        radius: 0.022
+      - center: [-0.01, 0.08, -0.14]
+        radius: 0.022
+      - center: [-0.01, 0.085, -0.11]
+        radius: 0.022
+      - center: [-0.01, 0.09, -0.08]
+        radius: 0.022
+      - center: [-0.01, 0.095, -0.05]
+        radius: 0.022
+      - center: [0.0, -0.009, 0.0]
+        radius: 0.05
+      right_panda_link6:
+      - center: [0.085, 0.035, 0.0]
+        radius: 0.045
+      - center: [0.085, 0.0, 0.0]
+        radius: 0.045
+      - center: [0.085, -0.015, 0.0]
+        radius: 0.045
+      right_panda_link7:
+      - center: [0.0, 0.0, 0.07]
+        radius: 0.045
+      - center: [0.02, 0.04, 0.08]
+        radius: 0.024
+      - center: [0.04, 0.02, 0.08]
+        radius: 0.024
+      - center: [0.04, 0.06, 0.085]
+        radius: 0.02
+      - center: [0.06, 0.04, 0.085]
+        radius: 0.02
+      right_panda_hand:
+      - center: [0.0, -0.075, 0.01]
+        radius: 0.023
+      - center: [0.0, -0.045, 0.01]
+        radius: 0.023
+      - center: [0.0, -0.015, 0.01]
+        radius: 0.023
+      - center: [0.0, 0.015, 0.01]
+        radius: 0.023
+      - center: [0.0, 0.045, 0.01]
+        radius: 0.023
+      - center: [0.0, 0.075, 0.01]
+        radius: 0.023
+      - center: [0.0, -0.08, 0.03]
+        radius: 0.022
+      - center: [0.0, -0.045, 0.03]
+        radius: 0.022
+      - center: [0.0, -0.015, 0.03]
+        radius: 0.022
+      - center: [0.0, 0.015, 0.03]
+        radius: 0.022
+      - center: [0.0, 0.045, 0.03]
+        radius: 0.022
+      - center: [0.0, 0.08, 0.03]
+        radius: 0.022
+      - center: [0.0, -0.08, 0.045]
+        radius: 0.022
+      - center: [0.0, -0.045, 0.045]
+        radius: 0.022
+      - center: [0.0, -0.015, 0.045]
+        radius: 0.022
+      - center: [0.0, 0.015, 0.045]
+        radius: 0.022
+      - center: [0.0, 0.045, 0.045]
+        radius: 0.022
+      - center: [0.0, 0.08, 0.045]
+        radius: 0.022
+      right_panda_leftfinger:
+      - center: [0.0, 0.01, 0.043]
+        radius: 0.011
+      - center: [0.0, 0.02, 0.015]
+        radius: 0.011
+      right_panda_rightfinger:
+      - center: [0.0, -0.01, 0.043]
+        radius: 0.011
+      - center: [0.0, -0.02, 0.015]
+        radius: 0.011
+  load_dynamics: false

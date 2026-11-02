@@ -19,6 +19,8 @@ EXAMPLES = [
     "curobo.examples.getting_started.motion_planning",
     "curobo.examples.getting_started.reactive_control",
     "curobo.examples.getting_started.build_robot_model",
+    "curobo.examples.reference.dual_arm_bin_picking",
+    "curobo.examples.reference.multi_robot_welding",
 ]
 
 

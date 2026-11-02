@@ -1,0 +1,43 @@
+## SPDX-FileCopyrightText: Copyright (c) 2023-2026 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+## SPDX-License-Identifier: Apache-2.0
+## KAI_binpicking scene.
+##
+## Recreates the environment from cartesianPlan2_test_MANUAL in
+## smart_kuka_path_planning/test/KaiVision.test.cpp.
+## All obstacles are loaded as mesh assets.
+##
+## Coordinate convention: cuRobo uses meters + wxyz quaternion.
+## Original C++ test uses millimeters; poses below are converted to meters.
+## Poses are in the robot base frame. The C++ layout is shifted by -0.3 m in y
+## so the two bins sit symmetrically in front of the robot base.
+##
+## Obstacles attached to envNode in the C++ test (C++ pose -> pose used here):
+##
+## bin_1 : BinNode(410, 315, 145, 20) @ {500, 0, 372.5} mm -> (0.5, -0.3, 0.3725) m
+## box_1 : BoxNode(500, 500, 300) @ {500, 0, 150} mm -> (0.5, -0.3, 0.15) m
+## bin_2 : BinNode(410, 315, 145, 20) @ {500, 600, 372.5} mm -> (0.5, 0.3, 0.3725) m
+## box_2 : BoxNode(500, 500, 300) @ {500, 600, 150} mm -> (0.5, 0.3, 0.15) m
+##
+## Note: objPointCloudsBoxNode was detached from envNode before planning
+## (line 1138), so it is excluded as a static obstacle.
+
+mesh:
+  bin_1:
+    file_path: scene/kai_binpicking/bin.obj
+    pose: [0.5, -0.3, 0.3725, 1.0, 0.0, 0.0, 0.0]
+    color: [0.6, 0.4, 0.2, 1.0]
+
+  box_1:
+    file_path: scene/kai_binpicking/box.obj
+    pose: [0.5, -0.3, 0.15, 1.0, 0.0, 0.0, 0.0]
+    color: [0.5, 0.5, 0.5, 1.0]
+
+  bin_2:
+    file_path: scene/kai_binpicking/bin.obj
+    pose: [0.5, 0.3, 0.3725, 1.0, 0.0, 0.0, 0.0]
+    color: [0.6, 0.4, 0.2, 1.0]
+
+  box_2:
+    file_path: scene/kai_binpicking/box.obj
+    pose: [0.5, 0.3, 0.15, 1.0, 0.0, 0.0, 0.0]
+    color: [0.5, 0.5, 0.5, 1.0]
